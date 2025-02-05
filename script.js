@@ -9,7 +9,7 @@ btnEl.addEventListener("click",function(){
     
    console.log(myleads)
 })
-
+ulEl.innerHTML = ""
 for(let i = 0 ; i<myleads.length;i++){
     ulEl.innerHTML+= "<li>"  + myleads[i] + "</li>"
 }
