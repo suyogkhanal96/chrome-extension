@@ -9,6 +9,12 @@ const inputEl = document.getElementById("input-el");
 const btnEl = document.getElementById("input-btn");
 const ulEl = document.getElementById("ul-el");
 
+if(leadsFromLocalStorage)
+{
+  myleads = leadsFromLocalStorage 
+  renderleads()
+}
+
 btnEl.addEventListener("click", function () {
   myleads.push(inputEl.value);
   inputEl.value = "";
