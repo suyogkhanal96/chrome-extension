@@ -1,4 +1,4 @@
-let myleads = [];
+let myleads = []
 
 var leadsFromLocalStorage = JSON.parse(localStorage.getItem("myleads"))
 
@@ -9,7 +9,7 @@ const deleteBtn = document.getElementById("delete-btn")
 const inputBtn = document.getElementById("input-btn")
 const ulEl = document.getElementById("ul-el")
 const tabBtn = document.getElementById("tab-btn")
-const tab = [{url: "www.youtube.com/technogamerz"}]
+
 if(leadsFromLocalStorage)
 {
   myleads = leadsFromLocalStorage 
@@ -29,12 +29,15 @@ inputBtn.addEventListener("click", function () {
   render(myleads)
   
 });
-tabBtn.addEventListener("click",function(){
-  chrome.tabs.query({"active": true, "currentWindow": true}, function (tabs){
-    myleads.push(tab[0].url)
+
+  tabBtn.addEventListener("click", function() {
+    chrome.tabs.query({"active": true, "currentWindow": true}, function(tabs) {
+      myleads.push(tabs[0].url);  
+      localStorage.setItem("myleads", JSON.stringify(myleads))
+      render(myleads); 
+    })
+  })
   
-    localStorage.setItem("myleads",JSON.stringify(myleads))
-  render(myleads)})})
   
 function render(leads) {
   let listItems = ""
