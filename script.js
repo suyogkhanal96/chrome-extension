@@ -30,12 +30,12 @@ inputBtn.addEventListener("click", function () {
   
 });
 tabBtn.addEventListener("click",function(){
-  myleads.push(tab[0].url)
-  inputEl.value=""
-  localStorage.setItem("myleads",JSON.stringify(myleads))
-//console.log(tab[0].url)
-render(myleads)
-})
+  chrome.tabs.query({"active": true, "currentWindow": true}, function (tabs){
+    myleads.push(tab[0].url)
+  
+    localStorage.setItem("myleads",JSON.stringify(myleads))
+  render(myleads)})})
+  
 function render(leads) {
   let listItems = ""
   for (let i = 0; i < leads.length; i++) {
